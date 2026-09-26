@@ -18,6 +18,10 @@ RUN \
     && npm install --force \
     "eufy-security-ws@${EUFY_SECURITY_WS_VERSION}"
 
+# FamiLock S3 Max (T85V0) lock support; see patch-t85v0.sh
+COPY patch-t85v0.sh /tmp/
+RUN sh /tmp/patch-t85v0.sh && rm /tmp/patch-t85v0.sh
+
 COPY run.sh /
 RUN chmod a+x /run.sh
 WORKDIR /data
